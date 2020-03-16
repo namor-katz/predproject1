@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -22,6 +23,10 @@ public class UserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         //должен возвращать страницу хтмл
+
+        PrintWriter writer = resp.getWriter();
+        writer.println("Method GET from AddServlet");
+/*
         Map<String, Object> pageVariables = createPageVariablesMap(req);
 
         UserService userService = new UserService();
@@ -31,7 +36,10 @@ public class UserServlet extends HttpServlet {
             System.out.println("ошибка при создании таблицы!");
         }
 
+
         resp.getWriter().println(PageGenerator.getInstance().getPage("registrationPage.html", pageVariables));
+
+ */
         resp.setContentType("text/html, charset=utf-8");
         resp.setStatus(200);
     }
@@ -39,6 +47,8 @@ public class UserServlet extends HttpServlet {
     @SneakyThrows   //WTF
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        /*
         Map<String, Object> pageVariables = createPageVariablesMap(req);
         UserService userService = new UserService();
         String name = req.getParameter("name");
@@ -48,6 +58,8 @@ public class UserServlet extends HttpServlet {
         userService.addUser(name, password);
 
         resp.getWriter().println(PageGenerator.getInstance().getPage("SuccessRegister.html", pageVariables));
+
+         */
         resp.setContentType("text/html; charset=utf-8");
         resp.setStatus(HttpServletResponse.SC_OK);
     }
