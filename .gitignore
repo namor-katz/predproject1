@@ -1,4 +1,5 @@
 *.class
 .idea/
-src/
 .attach_pid*
+my-app.iml
+target/
