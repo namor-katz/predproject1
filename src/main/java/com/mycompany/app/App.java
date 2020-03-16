@@ -18,6 +18,7 @@ public class App
 {
     public static void main( String[] args ) throws NoSuchAlgorithmException, Exception {
         System.out.println( "Hello World!" );
+        /*
 //        User user = new User("vash", "strong passfort");
 //        System.out.println(user.getHash_password() + "  я хэшированный пароль");
 
@@ -29,7 +30,7 @@ public class App
         server.setHandler(context);
         server.start();
         server.join();
-
+*/
 //        UserService userService = new UserService();
 //        userService.createTable();
 //        userService.addUser(user.getName(), user.getHash_password());

@@ -6,6 +6,7 @@ import com.mycompany.app.model.User;
 import com.mycompany.app.utils.PageGenerator;
 import lombok.SneakyThrows;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,15 +18,17 @@ import java.util.Map;
 import java.util.Objects;
 import javax.servlet.annotation.WebServlet;
 
-@WebServlet("/register")
+//@WebServlet("/register")
 public class UserServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         //должен возвращать страницу хтмл
-
-        PrintWriter writer = resp.getWriter();
-        writer.println("Method GET from AddServlet");
+        System.out.println("RUN servlet");
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("add.jsp");
+        requestDispatcher.forward(req, resp);
+//        PrintWriter writer = resp.getWriter();
+//        writer.println("Method GET from AddServlet");
 /*
         Map<String, Object> pageVariables = createPageVariablesMap(req);
 
@@ -40,8 +43,8 @@ public class UserServlet extends HttpServlet {
         resp.getWriter().println(PageGenerator.getInstance().getPage("registrationPage.html", pageVariables));
 
  */
-        resp.setContentType("text/html, charset=utf-8");
-        resp.setStatus(200);
+//        resp.setContentType("text/html, charset=utf-8");
+//        resp.setStatus(200);
     }
 
     @SneakyThrows   //WTF
