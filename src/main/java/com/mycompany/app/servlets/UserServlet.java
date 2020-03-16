@@ -18,7 +18,6 @@ import java.util.Map;
 import java.util.Objects;
 import javax.servlet.annotation.WebServlet;
 
-//@WebServlet("/register")
 public class UserServlet extends HttpServlet {
 
     @Override
@@ -27,54 +26,20 @@ public class UserServlet extends HttpServlet {
         System.out.println("RUN servlet");
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("add.jsp");
         requestDispatcher.forward(req, resp);
-//        PrintWriter writer = resp.getWriter();
-//        writer.println("Method GET from AddServlet");
-/*
-        Map<String, Object> pageVariables = createPageVariablesMap(req);
-
-        UserService userService = new UserService();
-        try {
-            userService.createTable();
-        } catch (Exception e) {
-            System.out.println("ошибка при создании таблицы!");
-        }
-
-
-        resp.getWriter().println(PageGenerator.getInstance().getPage("registrationPage.html", pageVariables));
-
- */
-//        resp.setContentType("text/html, charset=utf-8");
-//        resp.setStatus(200);
     }
 
     @SneakyThrows   //WTF
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        /*
-        Map<String, Object> pageVariables = createPageVariablesMap(req);
+//        Map<String, Object> pageVariables = createPageVariablesMap(req);
         UserService userService = new UserService();
         String name = req.getParameter("name");
         String password = req.getParameter("password");
-//        User user = new User(name, password);
 
         userService.addUser(name, password);
 
-        resp.getWriter().println(PageGenerator.getInstance().getPage("SuccessRegister.html", pageVariables));
-
-         */
-        resp.setContentType("text/html; charset=utf-8");
-        resp.setStatus(HttpServletResponse.SC_OK);
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("list.jsp");
+        requestDispatcher.forward(req, resp);
     }
-
-    private static Map<String, Object> createPageVariablesMap(HttpServletRequest request) {
-        Map<String, Object> pageVariables = new HashMap<>();
-        pageVariables.put("method", request.getMethod());
-        pageVariables.put("URL", request.getRequestURL().toString());
-        pageVariables.put("pathInfo", request.getPathInfo());
-        pageVariables.put("sessionId", request.getSession().getId());
-        pageVariables.put("parameters", request.getParameterMap().toString());
-        return pageVariables;
-    }
-
 }

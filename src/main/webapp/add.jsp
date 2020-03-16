@@ -8,9 +8,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Add your user</title>
 </head>
 <body>
-This add
+<h1>Register your user!</h1>
+<form method="POST" accept-charset="UTF-8">
+    <p><input type="text" name="name" placeholder="name" /> </p>
+    <p> <input type="password" name="password" placeholder="password"/> </p>
+    <p> <input type="submit" value="registration"> </p>
+</form>
+
 </body>
 </html>
