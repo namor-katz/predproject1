@@ -14,5 +14,15 @@
         <url-pattern>/add</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>MyServlet2</servlet-name>
+        <servlet-class>com.mycompany.app.servlets.listAllUserServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>MyServlet2</servlet-name>
+        <url-pattern>/list</url-pattern>
+    </servlet-mapping>
+
 </web-app>
 

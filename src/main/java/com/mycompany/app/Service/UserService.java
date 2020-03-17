@@ -6,7 +6,10 @@ import com.mycompany.app.utils.DbUtils;
 import com.mycompany.app.utils.Utils;
 
 import java.security.NoSuchAlgorithmException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
+import java.util.List;
 
 public class UserService {
     //принять имя юзера и пароль. хэшировать пароль. записать объект юзер в базу.
@@ -49,5 +52,17 @@ public class UserService {
         } catch (SQLException e) {
             System.out.println("Error create table");
         }
+    }
+
+    public List<String> getAllUsers() throws SQLException {
+        List<String> listAllUsers = new LinkedList<>();
+        UserDao dao = DbUtils.getUserDAO();
+        ResultSet rs = dao.getAllUsers();
+        while (rs.next()) {
+            String name = rs.getString("name");
+//            String hash_password = rs.getString("hashPassword");
+            listAllUsers.add(name);
+        }
+        return listAllUsers;
     }
 }

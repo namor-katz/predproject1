@@ -24,4 +24,11 @@ public class UserDao {
         stmt.execute("CREATE table if not exists user (id bigint auto_increment, name varchar(256), hashPassword varchar(256), primary key(id))");
         stmt.close();
     }
+
+    public ResultSet getAllUsers() throws SQLException {
+        String sql = "SELECT * FROM user;";
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery(sql);
+        return rs;
+    }
 }
