@@ -3,6 +3,7 @@ package com.mycompany.app.servlets;
 import com.mycompany.app.Service.UserService;
 import lombok.SneakyThrows;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,12 +24,12 @@ public class UserServlet extends HttpServlet {
     @SneakyThrows   //WTF
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String path = "/my_app_war/list";
         UserService userService = new UserService();
         String name = req.getParameter("name");
         String password = req.getParameter("password");
         userService.addUser(name, password);
 
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("list.jsp");
-        requestDispatcher.forward(req, resp);
+        resp.sendRedirect(path);
     }
 }

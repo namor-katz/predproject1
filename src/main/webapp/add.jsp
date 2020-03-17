@@ -16,6 +16,8 @@
     <p><input type="text" name="name" placeholder="name" /> </p>
     <p> <input type="password" name="password" placeholder="password"/> </p>
     <p> <input type="submit" value="registration"> </p>
+
+    <p>Today <%= new java.util.Date() %></p>
 </form>
 
 </body>

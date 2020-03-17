@@ -24,5 +24,6 @@
         <button onclick="location.href='/my_app_war/add'">Add user</button>
     </div>
 </div>
+<jsp:include page="footer.jsp" />
 </body>
 </html>

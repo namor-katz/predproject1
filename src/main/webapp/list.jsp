@@ -20,12 +20,11 @@
         if (names != null && !names.isEmpty()) {
             for (String s : names) {
                 out.println("<li>" + s + "</li>");
-                out.println("<button background=\"navi\">delete</button>");
+                out.println("<button>delete</button> <=***=> <button>edit</button>");
                 out.println("<hr>");
             }
         }
     %>
 </ul>
-
 </body>
 </html>
