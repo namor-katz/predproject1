@@ -8,7 +8,6 @@ public class Utils {
         MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
         messageDigest.update(password.getBytes());
         String encryptedString = new String(messageDigest.digest());
-//        System.out.printf(encryptedString);
         return encryptedString;
     }
 }

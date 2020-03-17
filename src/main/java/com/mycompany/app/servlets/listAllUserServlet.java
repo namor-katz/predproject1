@@ -2,11 +2,8 @@ package com.mycompany.app.servlets;
 
 
 import com.mycompany.app.Service.UserService;
-import com.mycompany.app.model.User;
 import lombok.SneakyThrows;
-
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,7 +19,5 @@ public class listAllUserServlet extends HttpServlet{
         req.setAttribute("userNames", list);
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("list.jsp");
         requestDispatcher.forward(req, resp);
-
     }
-
 }

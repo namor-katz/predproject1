@@ -1,20 +1,13 @@
 package com.mycompany.app.servlets;
 
-//import javax.servlet.HttpServlet;
 import com.mycompany.app.Service.UserService;
-import com.mycompany.app.model.User;
-import com.mycompany.app.utils.PageGenerator;
 import lombok.SneakyThrows;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Objects;
-import javax.servlet.annotation.WebServlet;
 
 public class UserServlet extends HttpServlet {
 
