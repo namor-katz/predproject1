@@ -61,7 +61,6 @@ public class UserService {
         while (rs.next()) {
             String name = rs.getString("name");
             String datetime = rs.getString("time_created");
-//            String hash_password = rs.getString("hashPassword");
             listAllUsers.add("пользователь " + name + " созданный " + datetime);
         }
         return listAllUsers;
