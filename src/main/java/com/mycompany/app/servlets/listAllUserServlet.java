@@ -1,7 +1,7 @@
 package com.mycompany.app.servlets;
 
-
 import com.mycompany.app.Service.UserService;
+import com.mycompany.app.model.User;
 import lombok.SneakyThrows;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
@@ -17,8 +17,8 @@ public class listAllUserServlet extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         UserService userService = new UserService();
-        List<String> list = userService.getAllUsers();
-        req.setAttribute("userNames", list);
+        List<User> list = userService.getAllUsers();
+        req.setAttribute("userNames", list);    //т.е. тут передаётся юзер из id и name
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("list.jsp");
         requestDispatcher.forward(req, resp);
     }

@@ -54,14 +54,29 @@ public class UserService {
         }
     }
 
-    public List<String> getAllUsers() throws SQLException {
-        List<String> listAllUsers = new LinkedList<>();
+    public boolean deleteUserById(long id) {
+        boolean successDelete;
+        UserDao dao = DbUtils.getUserDAO();
+        try {
+            dao.deleteUserById(id);
+            successDelete = true;
+        } catch (SQLException e) {
+            successDelete = false;
+        }
+        return successDelete;
+    }
+
+    public List<User> getAllUsers() throws SQLException, NoSuchAlgorithmException {
+        List<User> listAllUsers = new LinkedList<>();
         UserDao dao = DbUtils.getUserDAO();
         ResultSet rs = dao.getAllUsers();
         while (rs.next()) {
+            long id = Long.parseLong(rs.getString("id"));
             String name = rs.getString("name");
             String datetime = rs.getString("time_created");
-            listAllUsers.add("пользователь " + name + " созданный " + datetime);
+            User user = new User(id, name);
+            System.out.println(user.getId() + " " + user.getName());
+            listAllUsers.add(user);
         }
         return listAllUsers;
     }

@@ -19,6 +19,15 @@ public class UserDao {
         int RowsAffected = preparedStatement.executeUpdate();
     }
 
+    public int deleteUserById(long id) throws SQLException {
+        String query = "DELETE FROM user WHERE id = ?";
+        PreparedStatement prs = connection.prepareStatement(query);
+        prs.setLong(1, id);
+        int row = prs.executeUpdate();
+        System.out.println(row);
+        return row;
+    }
+
     public void createTable() throws SQLException {
         Statement stmt = connection.createStatement();
         stmt.execute("CREATE table if not exists user (id bigint auto_increment, name varchar(256), hashPassword varchar(256), time_created timestamp, primary key(id))");
