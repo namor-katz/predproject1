@@ -39,7 +39,7 @@
                 <td><c:out value="${user.basic_language}" /></td>
                 <td><c:out value="${user.time_created}" /></td>
                 <td>
-                    <a href="/edit?id=<c:out value='${user.id}' />">Edit</a>
+                    <a href="/my_app_war/edit?id=<c:out value='${user.id}' />">Edit</a>
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="/my_app_war/delete?id=<c:out value='${user.id}' />">Delete</a>
                 </td>

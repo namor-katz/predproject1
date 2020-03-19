@@ -34,9 +34,9 @@ public class User {
         this.time_created = time_created;
     }
 
-    public User(long id, String name, String time_created) {
+    public User(long id, String name, String basic_language) {
         this.id = id;
         this.name = name;
-        this.time_created = time_created;
+        this.basic_language = basic_language;
     }
 }

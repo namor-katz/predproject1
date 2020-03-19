@@ -24,14 +24,30 @@ public class UserDao {
         PreparedStatement prs = connection.prepareStatement(query);
         prs.setLong(1, id);
         int row = prs.executeUpdate();
-        System.out.println(row);
         return row;
+    }
+
+    public void editUser(long id, String name, String basic_language) throws SQLException {
+        String query = "UPDATE user SET  name = ?, basic_language = ? WHERE id = ?";
+        PreparedStatement prs = connection.prepareStatement(query);
+        prs.setString(1, name);
+        prs.setString(2, basic_language);
+        prs.setLong(3, id);
+        int row = prs.executeUpdate();
     }
 
     public void createTable() throws SQLException {
         Statement stmt = connection.createStatement();
         stmt.execute("CREATE table if not exists user (id bigint auto_increment, name varchar(256), basic_language varchar(256), time_created timestamp, primary key(id))");
         stmt.close();
+    }
+
+    public ResultSet getUserById(long id) throws SQLException {
+        String sql = "SELECT * FROM user WHERE id = ?";
+        PreparedStatement prs = connection.prepareStatement(sql);
+        prs.setLong(1, id);
+        ResultSet rs = prs.executeQuery();
+        return rs;
     }
 
     public ResultSet getAllUsers() throws SQLException {

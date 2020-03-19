@@ -22,16 +22,20 @@ public class UserService {
         }
     }
 
-    public boolean editUser(String password) {
-        return false;
+    public boolean editUser(long id, String new_name, String new_basic_language) throws SQLException {
+        User user = new User(new_name, new_basic_language);
+        UserDao dao = DbUtils.getUserDAO();
+        dao.editUser(id, new_name, new_basic_language);
+        return true;
     }
 
-    public boolean deleteUser(String name) {
-        return false;
-    }
-
-    public User getUserByName(String name) {
-        User user = new User();
+    public User getUserById(long id) throws SQLException {
+        UserDao dao = DbUtils.getUserDAO();
+        ResultSet res = dao.getUserById(id);
+        res.next();
+        String name = res.getString("name");
+        String basic_language = res.getString("basic_language");
+        User user = new User(id, name, basic_language);
         return user;
     }
 
