@@ -41,7 +41,7 @@
                 <td>
                     <a href="/edit?id=<c:out value='${user.id}' />">Edit</a>
                     &nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="/delete?id=<c:out value='${user.id}' />">Delete</a>
+                    <a href="/my_app_war/delete?id=<c:out value='${user.id}' />">Delete</a>
                 </td>
 
             </tr>
