@@ -14,8 +14,6 @@
 <body>
 <h2>This user from edit</h2>
 
-${user}
-
 <form method="post" accept-charset="UTF-8">
     <p> <input type="text" name="name" value="<c:out value='${user.name}' />" />  </p>
     <p><input type="text" name="lang" value="<c:out value='${user.basic_language}' />" /> </p>
