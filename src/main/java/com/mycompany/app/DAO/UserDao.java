@@ -12,10 +12,10 @@ public class UserDao {
     }
 
     public void addUser(User user) throws SQLException {
-        String query = "INSERT INTO user (name, hashPassword, time_created) VALUES(?, ?, NOW())";
+        String query = "INSERT INTO user (name, basic_language, time_created) VALUES(?, ?, NOW())";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setString(1, user.getName());
-        preparedStatement.setString(2, user.getHash_password());
+        preparedStatement.setString(2, user.getBasic_language());
         int RowsAffected = preparedStatement.executeUpdate();
     }
 
@@ -30,7 +30,7 @@ public class UserDao {
 
     public void createTable() throws SQLException {
         Statement stmt = connection.createStatement();
-        stmt.execute("CREATE table if not exists user (id bigint auto_increment, name varchar(256), hashPassword varchar(256), time_created timestamp, primary key(id))");
+        stmt.execute("CREATE table if not exists user (id bigint auto_increment, name varchar(256), basic_language varchar(256), time_created timestamp, primary key(id))");
         stmt.close();
     }
 

@@ -29,8 +29,8 @@ public class UserServlet extends HttpServlet {
         String path = "/my_app_war/list";
         UserService userService = new UserService();
         String name = req.getParameter("name");
-        String password = req.getParameter("password");
-        userService.addUser(name, password);
+        String basic_language = req.getParameter("lang");
+        userService.addUser(name, basic_language);
 
         resp.sendRedirect(path);
     }
