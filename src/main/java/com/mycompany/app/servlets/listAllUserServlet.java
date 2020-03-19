@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(urlPatterns = "/list", name = "MyServlet2")
+@WebServlet(urlPatterns = "/list", name = "listAllUserServlet")
 public class listAllUserServlet extends HttpServlet{
     @SneakyThrows
     @Override

@@ -28,16 +28,16 @@
         <tr>
             <th>ID</th>
             <th>Name</th>
-            <th>Time_Created</th>
             <th>Base Language</th>
+            <th>Time_Created</th>
             <th>Actions</th>
         </tr>
         <c:forEach var="user" items="${userNames}">
             <tr>
                 <td><c:out value="${user.id}" /></td>
                 <td><c:out value="${user.name}" /></td>
-                <td><c:out value="${user.time_created}" /></td>
                 <td><c:out value="${user.basic_language}" /></td>
+                <td><c:out value="${user.time_created}" /></td>
                 <td>
                     <a href="/edit?id=<c:out value='${user.id}' />">Edit</a>
                     &nbsp;&nbsp;&nbsp;&nbsp;

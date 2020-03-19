@@ -10,7 +10,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class UserService {
-    //принять имя юзера и пароль. хэшировать пароль. записать объект юзер в базу.
     public boolean addUser(String name, String basic_language) {
         try {
             User user = new User(name, basic_language);
@@ -18,8 +17,7 @@ public class UserService {
             dao.addUser(user);
             return true;
         } catch ( SQLException e) {
-            System.out.println("проблема с методом хэширования");
-            System.out.println("а может с сикуелем. хз кароч.");
+            System.out.println("проблема с бд.");
             return false;
         }
     }
@@ -35,11 +33,6 @@ public class UserService {
     public User getUserByName(String name) {
         User user = new User();
         return user;
-    }
-
-    public boolean checkPassword(User user) {
-
-        return false;
     }
 
     public void createTable() {
@@ -73,7 +66,6 @@ public class UserService {
             String basic_language = rs.getString("basic_language");
             String time_created = rs.getString("time_created");
             User user = new User(id, name, basic_language, time_created);
-            System.out.println("this is new USer " + user.getName() + user.getBasic_language() + user.getTime_created());
             listAllUsers.add(user);
         }
         return listAllUsers;
