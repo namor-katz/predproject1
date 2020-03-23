@@ -16,7 +16,7 @@ public class UserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         UserService userService = new UserService();
-        userService.createTable();
+//        userService.createTable();
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("add.jsp");
         requestDispatcher.forward(req, resp);
     }

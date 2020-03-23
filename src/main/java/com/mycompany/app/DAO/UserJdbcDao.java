@@ -4,10 +4,10 @@ import com.mycompany.app.model.User;
 
 import java.sql.*;
 
-public class UserDao {
+public class UserJdbcDao {
     private Connection connection;
 
-    public UserDao(Connection connection) {
+    public UserJdbcDao(Connection connection) {
         this.connection = connection;
     }
 

@@ -1,12 +1,25 @@
 package com.mycompany.app.model;
 import lombok.Data;
 
+import javax.persistence.*;
+
 @Data   //this is lombok. сеттеров-геттеров нет, но они есть!
+@Entity
+@Table(name = "user")
 public class User {
 
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "basic_language")
     private String basic_language;
+
+    @Column
     private String time_created;
 
     public User() {

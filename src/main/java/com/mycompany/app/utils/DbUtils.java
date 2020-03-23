@@ -1,7 +1,6 @@
 package com.mycompany.app.utils;
 
-import com.mycompany.app.DAO.UserDao;
-import com.mycompany.app.model.User;
+import com.mycompany.app.DAO.UserJdbcDao;
 
 import java.sql.Connection;
 import java.sql.Driver;
@@ -32,7 +31,7 @@ public class DbUtils {
         }
     }
 
-    public static UserDao getUserDAO() {
-        return new UserDao(getMysqlConnection());
+    public static UserJdbcDao getUserDAO() {
+        return new UserJdbcDao(getMysqlConnection());
     }
 }
