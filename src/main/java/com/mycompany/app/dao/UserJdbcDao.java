@@ -1,4 +1,4 @@
-package com.mycompany.app.DAO;
+package com.mycompany.app.dao;
 
 import com.mycompany.app.model.User;
 

@@ -1,6 +1,6 @@
 package com.mycompany.app.servlets;
 
-import com.mycompany.app.Service.UserService;
+import com.mycompany.app.service.UserService;
 import lombok.SneakyThrows;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

@@ -1,10 +1,9 @@
-package com.mycompany.app.DAO;
+package com.mycompany.app.dao;
 
 import com.mycompany.app.utils.DBHelper;
 import org.hibernate.*;
 import com.mycompany.app.model.User;
-import java.awt.*;
-import java.util.*;
+
 import java.util.List;
 
 public class UserHibernateDao {

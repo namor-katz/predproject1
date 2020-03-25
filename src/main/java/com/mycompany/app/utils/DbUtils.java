@@ -1,6 +1,6 @@
 package com.mycompany.app.utils;
 
-import com.mycompany.app.DAO.UserJdbcDao;
+import com.mycompany.app.dao.UserJdbcDao;
 
 import java.sql.Connection;
 import java.sql.Driver;

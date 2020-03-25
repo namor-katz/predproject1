@@ -1,13 +1,10 @@
-package com.mycompany.app.Service;
+package com.mycompany.app.service;
 
 //import com.mycompany.app.DAO.UserJdbcDao;
 import com.mycompany.app.model.User;
-import com.mycompany.app.utils.DbUtils;
-import com.mycompany.app.DAO.UserHibernateDao;
+import com.mycompany.app.dao.UserHibernateDao;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.LinkedList;
 import java.util.List;
 
 public class UserService {

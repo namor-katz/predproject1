@@ -1,6 +1,6 @@
 package com.mycompany.app.servlets;
 
-import com.mycompany.app.Service.UserService;
+import com.mycompany.app.service.UserService;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
