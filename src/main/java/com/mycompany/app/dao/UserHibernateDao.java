@@ -6,7 +6,7 @@ import com.mycompany.app.model.User;
 
 import java.util.List;
 
-public class UserHibernateDao {
+public class UserHibernateDao implements UserDao {
 
     private SessionFactory sessionFactory;
 
@@ -38,7 +38,6 @@ public class UserHibernateDao {
     }
 
     public void editUser(long id, String new_name, String new_basic_language) {
-        //example function. будет ли работать?
         Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
 

@@ -3,8 +3,10 @@ package com.mycompany.app.dao;
 import com.mycompany.app.model.User;
 
 import java.sql.*;
+import java.util.LinkedList;
+import java.util.List;
 
-public class UserJdbcDao {
+public class UserJdbcDao implements UserDao {
     private Connection connection;
 
     public UserJdbcDao(Connection connection) {
@@ -42,18 +44,32 @@ public class UserJdbcDao {
         stmt.close();
     }
 
-    public ResultSet getUserById(long id) throws SQLException {
+    public User getUserById(long id) throws SQLException {
         String sql = "SELECT * FROM user WHERE id = ?";
         PreparedStatement prs = connection.prepareStatement(sql);
         prs.setLong(1, id);
         ResultSet rs = prs.executeQuery();
-        return rs;
+        rs.next();
+        String name = rs.getString("name");
+        String basic_language = rs.getString("basic_language");
+        User user = new User(name, basic_language);
+        return user;
     }
 
-    public ResultSet getAllUsers() throws SQLException {
+    public List<User> getAllUsers() throws SQLException {
+        List<User> listAllUsers = new LinkedList<>();
         String sql = "SELECT * FROM user;";
         Statement statement = connection.createStatement();
         ResultSet rs = statement.executeQuery(sql);
-        return rs;
+
+        while (rs.next()) {
+            long id = Long.parseLong(rs.getString("id"));
+            String name = rs.getString("name");
+            String basic_language = rs.getString("basic_language");
+            String time_created = rs.getString("time_created");
+            User user = new User(id, name, basic_language, time_created);
+            listAllUsers.add(user);
+        }
+        return listAllUsers;
     }
 }
