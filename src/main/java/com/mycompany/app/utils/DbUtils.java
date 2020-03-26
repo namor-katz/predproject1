@@ -30,8 +30,10 @@ public class DbUtils {
             throw new IllegalStateException();
         }
     }
-
+/*
     public static UserJdbcDao getUserDAO() {
         return new UserJdbcDao(getMysqlConnection());
     }
+
+ */
 }

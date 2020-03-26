@@ -1,6 +1,7 @@
 package com.mycompany.app.dao;
 
 import com.mycompany.app.model.User;
+import com.mycompany.app.utils.DBHelper;
 
 import java.sql.*;
 import java.util.LinkedList;
@@ -9,8 +10,9 @@ import java.util.List;
 public class UserJdbcDao implements UserDao {
     private Connection connection;
 
-    public UserJdbcDao(Connection connection) {
-        this.connection = connection;
+    public UserJdbcDao() {
+        this.connection = DBHelper.getUserDAO();
+
     }
 
     public void addUser(User user) throws SQLException {

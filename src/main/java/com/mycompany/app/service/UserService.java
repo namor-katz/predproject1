@@ -1,6 +1,7 @@
 package com.mycompany.app.service;
 
 //import com.mycompany.app.DAO.UserJdbcDao;
+import com.mycompany.app.dao.UserDao;
 import com.mycompany.app.model.User;
 import com.mycompany.app.dao.UserHibernateDao;
 
@@ -11,7 +12,8 @@ public class UserService {
 
     private static UserService userService;
 
-    private UserHibernateDao userDao;
+//    private UserHibernateDao userDao;
+    private UserDao userDao;
 
     public UserService() {
         userDao = new UserHibernateDao();
@@ -25,12 +27,12 @@ public class UserService {
     }
 
 
-    public void addUser(String name, String basic_language) {
+    public void addUser(String name, String basic_language) throws SQLException {
         User user =  new User(name, basic_language);
         userDao.addUser(user);
     }
 
-    public boolean editUser(long id, String new_name, String new_basic_language) {
+    public boolean editUser(long id, String new_name, String new_basic_language) throws SQLException {
         userDao.editUser(id, new_name, new_basic_language);
         return true;
     }
@@ -48,7 +50,7 @@ public class UserService {
         }
     }
 */
-    public void deleteUserById(long id) {
+    public void deleteUserById(long id) throws SQLException {
         userDao.deleteUserById(id);
     }
 

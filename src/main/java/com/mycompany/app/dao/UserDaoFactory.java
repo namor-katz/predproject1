@@ -2,24 +2,6 @@ package com.mycompany.app.dao;
 import java.io.*;
 import java.util.Properties;
 
-/*
-public class UserDaoFactory {
-
-    public static void main(String[] args) {
-
-        FileInputStream fis;
-        Properties property = new Properties();
-
-        try {
-            fis = new FileInputStream("src/main/resources/config.properties");
-            property.load(fis);
-            String type = property.getProperty("db.host");
-
-        } catch (IOException e) {
-            System.err.println("ОШИБКА: Файл свойств отсуствует!");
-        }
-    }
-*/
 public class UserDaoFactory {
 
     public static String parseConfig() throws FileNotFoundException {
@@ -43,11 +25,11 @@ public class UserDaoFactory {
 
 
 
-    public static UserDAO getUserDAO(String type) {
-        if (type.equalsIgnoreCase("jdbc")) {
-            return new UserDAOImpl();
+    public static UserDao getUserDAO(String typeDao) {
+        if (typeDao.equalsIgnoreCase("jdbc")) {
+            return new UserJdbcDao();
         } else {
-            return new UserDAOImpl();
+            return new UserHibernateDao();
         }
     }
 }
