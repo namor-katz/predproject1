@@ -2,6 +2,7 @@ package com.mycompany.app.service;
 
 //import com.mycompany.app.DAO.UserJdbcDao;
 import com.mycompany.app.dao.UserDao;
+import com.mycompany.app.dao.UserDaoFactory;
 import com.mycompany.app.model.User;
 import com.mycompany.app.dao.UserHibernateDao;
 
@@ -16,7 +17,8 @@ public class UserService {
     private UserDao userDao;
 
     public UserService() {
-        userDao = new UserHibernateDao();
+//        userDao = new UserHibernateDao();
+        userDao = UserDaoFactory.getUserDAO();
     }
 
     public static UserService getInstance() {

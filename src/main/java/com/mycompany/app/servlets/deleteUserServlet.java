@@ -1,6 +1,7 @@
 package com.mycompany.app.servlets;
 
 import com.mycompany.app.service.UserService;
+import lombok.SneakyThrows;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +11,7 @@ import java.io.IOException;
 
 @WebServlet(urlPatterns = "/delete", name = "deleteUserServlet")
 public class deleteUserServlet extends HttpServlet {
+    @SneakyThrows
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String path = "/my_app_war/list";

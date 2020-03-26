@@ -4,6 +4,9 @@ import java.util.Properties;
 
 public class UserDaoFactory {
 
+    public UserDaoFactory() throws FileNotFoundException {
+    }
+
     public static String parseConfig() throws FileNotFoundException {
 
         FileInputStream fis;
@@ -24,8 +27,17 @@ public class UserDaoFactory {
     }
 
 
+    private static String typeDao;
 
-    public static UserDao getUserDAO(String typeDao) {
+    static {
+        try {
+            typeDao = parseConfig();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static UserDao getUserDAO() {
         if (typeDao.equalsIgnoreCase("jdbc")) {
             return new UserJdbcDao();
         } else {
