@@ -7,16 +7,17 @@ public class UserDaoFactory {
     public UserDaoFactory() throws FileNotFoundException {
     }
 
-    public static String parseConfig() throws FileNotFoundException {
+    public static String parseConfig() {
 
         FileInputStream fis;
         Properties property = new Properties();
         String typeDao;
 
         try {
-            fis = new FileInputStream("src/main/resources/config.properties");
+            fis = new FileInputStream("/home/guest/my-app/src/main/resources/config.properties");
             property.load(fis);
             typeDao = property.getProperty("daotype");
+            System.out.println("УРЯЯЯЯ! JDBC!");
             return typeDao;
         }
         catch (IOException e) {
@@ -30,11 +31,7 @@ public class UserDaoFactory {
     private static String typeDao;
 
     static {
-        try {
-            typeDao = parseConfig();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        typeDao = parseConfig();
     }
 
     public static UserDao getUserDAO() {
