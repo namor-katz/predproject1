@@ -7,34 +7,27 @@ public class UserDaoFactory {
     public UserDaoFactory() throws FileNotFoundException {
     }
 
-    public static String parseConfig() {
-
-        FileInputStream fis;
-        Properties property = new Properties();
+    public String parseConfig() {
         String typeDao;
-
         try {
-            fis = new FileInputStream("/home/guest/my-app/src/main/resources/config.properties");
-            property.load(fis);
+            Properties property = new Properties();
+            String propFileName = "config.properties";
+            InputStream inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
+
+            property.load(inputStream);
             typeDao = property.getProperty("daotype");
-            System.out.println("УРЯЯЯЯ! JDBC!");
             return typeDao;
         }
         catch (IOException e) {
-            System.err.println("ОШИБКА: Файл свойств отсуствует!");
-            typeDao = "fuck";
+            System.err.println("ОШИБКА: Файл свойств отсутствует!");
+            typeDao = "ff";
             return typeDao;
         }
     }
 
-
-    private static String typeDao;
-
-    static {
-        typeDao = parseConfig();
-    }
-
-    public static UserDao getUserDAO() {
+    public static UserDao getUserDAO() throws FileNotFoundException {
+        UserDaoFactory userDaoFactory = new UserDaoFactory();
+        String typeDao = userDaoFactory.parseConfig();
         if (typeDao.equalsIgnoreCase("jdbc")) {
             return new UserJdbcDao();
         } else {
