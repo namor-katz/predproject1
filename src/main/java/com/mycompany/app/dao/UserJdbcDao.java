@@ -97,7 +97,9 @@ public class UserJdbcDao implements UserDao {
         prs.setString(1, name);
         prs.setString(2, password);
         ResultSet rs = prs.executeQuery();
-        return rs.next();
+        rs.next();
+        boolean is_admin = rs.getBoolean("is_admin");
+        return is_admin;
     }
 
     @SneakyThrows

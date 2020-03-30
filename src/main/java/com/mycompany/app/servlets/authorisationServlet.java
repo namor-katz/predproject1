@@ -26,8 +26,6 @@ public class authorisationServlet extends HttpServlet {
     @SneakyThrows
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        String successAdminPath = "/my_app/";   //list
-        String successUserPath = "/my_app/";    //user info
         String userNotExistPath = "";   //отдать страницу 404 or userNotFound
         String fromReturn = null;
         boolean isUserExist;
@@ -38,16 +36,20 @@ public class authorisationServlet extends HttpServlet {
         String password = req.getParameter("password");
         isUserExist = userService.ifUserExist(name, password);
         isUserAdmin = userService.ifUserAdmin(name, password);
-        User user = userService.getUserByName(name, password);
 
         if(isUserExist & isUserAdmin) {
             fromReturn = "/my_app_war/list";
-            System.out.println("Я тут, но где же переход?");
 
         }
         else if (isUserExist) {
-            fromReturn = "/my_app_war/list"; //getuser by name
-            req.setAttribute("user", user.toString());  //single simple user jsp
+            fromReturn = "/my_app_war/detail"; //getuser by name
+            req.setAttribute("name", name);  //single simple user jsp
+            req.setAttribute("password", password);
+
+            User user = userService.getUserByName(name, password);
+            req.setAttribute("user", user);
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("detail.jsp");
+            requestDispatcher.forward(req, resp);
         }
         else {
             fromReturn = ""; //return 404
