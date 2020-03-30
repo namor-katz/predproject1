@@ -29,7 +29,8 @@ public class UserServlet extends HttpServlet {
         UserService userService = new UserService();
         String name = req.getParameter("name");
         String basic_language = req.getParameter("lang");
-        userService.addUser(name, basic_language);
+        boolean is_admin = Boolean.valueOf(req.getParameter("is_admin"));
+        userService.addUser(name, basic_language, is_admin);
 
         resp.sendRedirect(path);
     }

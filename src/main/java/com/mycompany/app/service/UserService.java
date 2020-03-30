@@ -26,8 +26,8 @@ public class UserService {
     }
 
 
-    public void addUser(String name, String basic_language) throws SQLException {
-        User user =  new User(name, basic_language);
+    public void addUser(String name, String basic_language, boolean is_admin) throws SQLException {
+        User user =  new User(name, basic_language, is_admin);
         userDao.addUser(user);
     }
 

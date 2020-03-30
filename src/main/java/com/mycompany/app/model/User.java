@@ -53,6 +53,14 @@ public class User {
         this.time_created = time_created;
     }
 
+    public User(String name, String basic_language, boolean is_admin) {
+//        this.id = id;
+        this.name = name;
+        this.basic_language = basic_language;
+        this.is_admin = is_admin;
+    }
+
+
     public User(long id, String name, String basic_language) {
         this.id = id;
         this.name = name;

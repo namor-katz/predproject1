@@ -17,10 +17,11 @@ public class UserJdbcDao implements UserDao {
     }
 
     public void addUser(User user) throws SQLException {
-        String query = "INSERT INTO user (name, basic_language, time_created) VALUES(?, ?, NOW())";
+        String query = "INSERT INTO user (name, is_admin, basic_language, time_created) VALUES(?, ?, ?, NOW())";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setString(1, user.getName());
-        preparedStatement.setString(2, user.getBasic_language());
+        preparedStatement.setBoolean(2, user.is_admin());
+        preparedStatement.setString(3, user.getBasic_language());
         int RowsAffected = preparedStatement.executeUpdate();
     }
 
