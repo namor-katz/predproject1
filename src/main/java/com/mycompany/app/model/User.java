@@ -3,7 +3,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 
-@Data   //this is lombok. сеттеров-геттеров нет, но они есть!
+@Data   //this is lombok. create all utils method
 @Entity
 @Table(name = "user")
 public class User {
@@ -15,6 +15,12 @@ public class User {
 
     @Column(name = "name")
     private String name;
+
+    @Column(name = "password")
+    private String password;
+
+    @Column(name = "is_admin")
+    private boolean is_admin;
 
     @Column(name = "basic_language")
     private String basic_language;
@@ -51,5 +57,9 @@ public class User {
         this.id = id;
         this.name = name;
         this.basic_language = basic_language;
+    }
+
+    public User(long id, String name, String password, boolean isAdmin, String basic_language, String time_created) {
+
     }
 }

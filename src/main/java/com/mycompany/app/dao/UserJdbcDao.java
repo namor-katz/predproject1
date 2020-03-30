@@ -2,6 +2,7 @@ package com.mycompany.app.dao;
 
 import com.mycompany.app.model.User;
 import com.mycompany.app.utils.DBHelper;
+import lombok.SneakyThrows;
 
 import java.sql.*;
 import java.util.LinkedList;
@@ -41,8 +42,12 @@ public class UserJdbcDao implements UserDao {
     }
 
     public void createTable() throws SQLException {
+        String sqlFromCreateTable = "CREATE table if not exists user (id bigint auto_increment, name varchar(256), " +
+                "password varchar(256), is_admin boolean not null default 0, basic_language varchar(256), " +
+                "time_created timestamp, primary key(id))";
         Statement stmt = connection.createStatement();
-        stmt.execute("CREATE table if not exists user (id bigint auto_increment, name varchar(256), basic_language varchar(256), time_created timestamp, primary key(id))");
+//        stmt.execute("CREATE table if not exists user (id bigint auto_increment, name varchar(256), basic_language varchar(256), time_created timestamp, primary key(id))");
+        stmt.execute(sqlFromCreateTable);
         stmt.close();
     }
 
@@ -74,4 +79,39 @@ public class UserJdbcDao implements UserDao {
         }
         return listAllUsers;
     }
+
+    @SneakyThrows
+    public boolean ifUserExist(String name, String password)  {
+        String sql = "SELECT * FROM user WHERE name = ? and password = ?";
+        PreparedStatement prs = connection.prepareStatement(sql);
+        prs.setString(1, name);
+        prs.setString(2, password);
+        ResultSet rs = prs.executeQuery();
+        return rs.next();
+    }
+
+    @SneakyThrows
+    public boolean ifUserAdmin(String name, String password) {
+        String sql = "SELECT is_admin FROM user WHERE name = ? and password = ?";
+        PreparedStatement prs = connection.prepareStatement(sql);
+        prs.setString(1, name);
+        prs.setString(2, password);
+        ResultSet rs = prs.executeQuery();
+        return rs.next();
+    }
+
+    @SneakyThrows
+    public User getUserByName(String name, String password) {
+        String sql = "SELECT * from user WHERE name = ? and password = ?";
+        PreparedStatement prs = connection.prepareStatement(sql);
+        prs.setString(1, name);
+        prs.setString(2, password);
+        ResultSet rs = prs.executeQuery();
+        rs.next();
+        String basic_language = rs.getString("basic_language");
+        Long id = rs.getLong("id");
+        User user = new User(id, name, basic_language);
+        return user;
+    }
+
 }

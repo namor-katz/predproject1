@@ -64,4 +64,35 @@ public class UserHibernateDao implements UserDao {
         session.close();
         return AllUsers;
     }
+
+    public void createTable() {
+        System.out.println("this dummy");
+    }
+
+    public boolean ifUserExist(String name, String password) {  //вернуть не буль, а просто результат выборки?
+        String hql = "SELECT User where name = :name AND password = :password";
+        Session session = sessionFactory.openSession();
+        Query q = session.createQuery(hql);
+        q.setParameter("name", name);
+        q.setParameter("password", password);
+        List list = q.list();
+        session.close();
+        if(list.size() > 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+
+    public boolean ifUserAdmin(String name, String password) {
+
+        return false;
+    }
+
+    public User getUserByName(String name, String password) {
+        Session session = sessionFactory.openSession();
+        return (User) session.get(User.class, name);
+    }
 }

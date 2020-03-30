@@ -10,4 +10,8 @@ public interface UserDao {
     public void editUser(long id, String name, String basic_language) throws SQLException;
     public User getUserById(long id) throws SQLException;
     public List<User> getAllUsers() throws SQLException;
+    public void createTable() throws SQLException;
+    public boolean ifUserExist(String name, String password) throws SQLException;
+    public boolean ifUserAdmin(String name, String password);
+    public User getUserByName(String name, String password);
 }

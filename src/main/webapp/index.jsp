@@ -20,8 +20,20 @@
 
 <div>       <!-- content -->
     <div>    <!-- buttons holder -->
-        <button onclick="location.href='/my_app_war/list'">List users</button>
-        <button onclick="location.href='/my_app_war/add'">Add user</button>
+        <h3>Please, registration</h3>
+<%--        <button onclick="location.href='/my_app_war/list'">List users</button>--%>
+        <button onclick="location.href='/my_app_war/add'">Registration</button>
+    </div>
+    <h2>OR</h2>
+    <div>
+        <h3>Sign in!</h3>
+
+        <form method="POST" accept-charset="UTF-8">
+            <p><input type="text" name="name" placeholder="your name"/></p>
+            <p><input type="password" name="password" placeholder="your password"/></p>
+            <p> <input type="submit" value="login"/></p>
+        </form>
+
     </div>
 </div>
 </body>

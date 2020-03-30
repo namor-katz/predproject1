@@ -13,18 +13,19 @@ import java.io.IOException;
 @WebServlet(urlPatterns = "/add", name = "UserServlet")
 public class UserServlet extends HttpServlet {
 
+    @SneakyThrows
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         UserService userService = new UserService();
-//        userService.createTable();
+        userService.createTable();
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("add.jsp");
         requestDispatcher.forward(req, resp);
     }
 
-    @SneakyThrows
+    @SneakyThrows   //lombok, wrapped exceptions
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String path = "/my_app_war/list";
+        String path = "/my_app_war";
         UserService userService = new UserService();
         String name = req.getParameter("name");
         String basic_language = req.getParameter("lang");

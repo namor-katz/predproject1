@@ -36,6 +36,10 @@ public class UserService {
         return true;
     }
 
+    public void createTable() throws SQLException {
+        userDao.createTable();
+    }
+
     public User getUserById(long id) throws SQLException {
         return userDao.getUserById(id);
     }
@@ -47,5 +51,19 @@ public class UserService {
     public List<User> getAllUsers() throws SQLException {
         List<User> listAllUsers = userDao.getAllUsers();
         return listAllUsers;
+    }
+
+    public boolean ifUserExist(String name, String password) throws SQLException {
+        return userDao.ifUserExist(name, password);
+    }
+
+    public boolean ifUserAdmin(String name, String password) {
+        return userDao.ifUserAdmin(name, password);
+    }
+
+
+    public User getUserByName(String name, String password) throws SQLException {
+        String separate = "; ";
+        return userDao.getUserByName(name, password);
     }
 }
