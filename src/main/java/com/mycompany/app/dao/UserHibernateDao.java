@@ -5,6 +5,7 @@ import org.hibernate.*;
 import com.mycompany.app.model.User;
 
 import java.util.List;
+import java.util.Queue;
 
 public class UserHibernateDao implements UserDao {
 
@@ -70,7 +71,7 @@ public class UserHibernateDao implements UserDao {
     }
 
     public boolean ifUserExist(String name, String password) {  //вернуть не буль, а просто результат выборки?
-        String hql = "SELECT User where name = :name AND password = :password";
+        String hql = "FROM User WHERE name = :name AND password = :password";
         Session session = sessionFactory.openSession();
         Query q = session.createQuery(hql);
         q.setParameter("name", name);
@@ -87,8 +88,19 @@ public class UserHibernateDao implements UserDao {
 
 
     public boolean ifUserAdmin(String name, String password) {
-
-        return false;
+        String hql = "FROM User where name = :name AND password = :password AND is_admin = :is_admin";
+        Session session = sessionFactory.openSession();
+        Query q = session.createQuery(hql);
+        q.setParameter("name", name);
+        q.setParameter("password", password);
+        q.setParameter("is_admin", true);
+        List list = q.list();
+        if(list.size() > 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     public User getUserByName(String name, String password) {
