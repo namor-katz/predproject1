@@ -30,7 +30,7 @@ public class editUserServlet extends HttpServlet {
     @SneakyThrows
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
-        String path = "/my_app_war/list";
+        String path = "/my_app_war/admin";
         UserService userService = new UserService();
         String name = req.getParameter("name");
         String basic_language = req.getParameter("lang");

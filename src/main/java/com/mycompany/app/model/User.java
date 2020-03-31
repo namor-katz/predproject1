@@ -70,4 +70,11 @@ public class User {
     public User(long id, String name, String password, boolean isAdmin, String basic_language, String time_created) {
 
     }
+
+    public User(String name, String password, String basic_language, boolean is_admin) {
+        this.name = name;
+        this.password = password;
+        this.basic_language = basic_language;
+        this.is_admin = is_admin;
+    }
 }

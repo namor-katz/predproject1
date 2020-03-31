@@ -14,7 +14,7 @@ public class deleteUserServlet extends HttpServlet {
     @SneakyThrows
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String path = "/my_app_war/list";
+        String path = "/my_app_war/admin";
         long id = Long.parseLong(req.getParameter("id"));
         UserService userService = new UserService();
         userService.deleteUserById(id);

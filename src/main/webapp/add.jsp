@@ -14,6 +14,7 @@
 <h1>Register your user!</h1>
 <form method="POST" accept-charset="UTF-8">
     <p><input type="text" name="name" placeholder="name" /> </p>
+    <p><input type="password" name="password" placeholder="set password"></p>
     <p> <input type="text" name="lang" placeholder="Programming Language"/> </p>
     <p><input type="checkbox" name="is_admin" value="true" >сделать админом?</p>
     <p> <input type="submit" value="registration"> </p>

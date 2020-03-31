@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -26,7 +27,6 @@ public class authorisationServlet extends HttpServlet {
     @SneakyThrows
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String userNotExistPath = "";   //отдать страницу 404 or userNotFound
         String fromReturn = null;
         boolean isUserExist;
         boolean isUserAdmin;
@@ -36,13 +36,16 @@ public class authorisationServlet extends HttpServlet {
         String password = req.getParameter("password");
         isUserExist = userService.ifUserExist(name, password);
         isUserAdmin = userService.ifUserAdmin(name, password);
+        HttpSession session = req.getSession();
 
         if(isUserExist & isUserAdmin) {
-            fromReturn = "/my_app_war/list";
+            session.setAttribute("is_admin", true);
+            fromReturn = "/my_app_war/admin";
 
         }
         else if (isUserExist) {
-            fromReturn = "/my_app_war/detail"; //getuser by name
+//            fromReturn = "/my_app_war/user"; //getuser by name
+            session.setAttribute("is_admin", false);
             req.setAttribute("name", name);  //single simple user jsp
             req.setAttribute("password", password);
 
@@ -52,7 +55,8 @@ public class authorisationServlet extends HttpServlet {
             requestDispatcher.forward(req, resp);
         }
         else {
-            fromReturn = ""; //return 404
+            session.setAttribute("is_admin", false);
+            fromReturn = "/my_app_war/notfound"; //return 404
         }
 
         resp.sendRedirect(fromReturn);

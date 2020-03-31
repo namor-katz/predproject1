@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.beans.PropertyEditor;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/detail", name = "singleUserServlet")
+@WebServlet(urlPatterns = "/user", name = "singleUserServlet")
 public class singleUserServlet extends HttpServlet {
 
     @SneakyThrows
