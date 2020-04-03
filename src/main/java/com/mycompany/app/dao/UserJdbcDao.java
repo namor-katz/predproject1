@@ -17,11 +17,11 @@ public class UserJdbcDao implements UserDao {
     }
 
     public void addUser(User user) throws SQLException {
-        String query = "INSERT INTO user (name, password, is_admin, basic_language, time_created) VALUES(?, ?, ?, ?, NOW())";
+        String query = "INSERT INTO user (name, password, role, basic_language, time_created) VALUES(?, ?, ?, ?, NOW())";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setString(1, user.getName());
         preparedStatement.setString(2, user.getPassword());
-        preparedStatement.setBoolean(3, user.is_admin());
+        preparedStatement.setString(3, user.getRole());
         preparedStatement.setString(4, user.getBasic_language());
         int RowsAffected = preparedStatement.executeUpdate();
     }
@@ -45,7 +45,7 @@ public class UserJdbcDao implements UserDao {
 
     public void createTable() throws SQLException {
         String sqlFromCreateTable = "CREATE table if not exists user (id bigint auto_increment, name varchar(256), " +
-                "password varchar(256), is_admin boolean not null default 0, basic_language varchar(256), " +
+                "password varchar(256), role varchar(256), basic_language varchar(256), " +
                 "time_created timestamp, primary key(id))";
         Statement stmt = connection.createStatement();
 //        stmt.execute("CREATE table if not exists user (id bigint auto_increment, name varchar(256), basic_language varchar(256), time_created timestamp, primary key(id))");
@@ -93,15 +93,15 @@ public class UserJdbcDao implements UserDao {
     }
 
     @SneakyThrows
-    public boolean ifUserAdmin(String name, String password) {
-        String sql = "SELECT is_admin FROM user WHERE name = ? and password = ?";
+    public String ifUserAdmin(String name, String password) {
+        String sql = "SELECT role FROM user WHERE name = ? and password = ?";
         PreparedStatement prs = connection.prepareStatement(sql);
         prs.setString(1, name);
         prs.setString(2, password);
         ResultSet rs = prs.executeQuery();
         rs.next();
-        boolean is_admin = rs.getBoolean("is_admin");
-        return is_admin;
+        String role = rs.getString("role");
+        return role;
     }
 
     @SneakyThrows

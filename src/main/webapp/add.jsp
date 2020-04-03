@@ -16,7 +16,7 @@
     <p><input type="text" name="name" placeholder="name" /> </p>
     <p><input type="password" name="password" placeholder="set password"></p>
     <p> <input type="text" name="lang" placeholder="Programming Language"/> </p>
-    <p><input type="checkbox" name="is_admin" value="true" >сделать админом?</p>
+    <p><input type="checkbox" name="role" value="admin" >сделать админом?</p>
     <p> <input type="submit" value="registration"> </p>
 </form>
 

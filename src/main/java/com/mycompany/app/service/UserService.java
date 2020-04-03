@@ -26,8 +26,8 @@ public class UserService {
     }
 
 
-    public void addUser(String name, String password, String basic_language, boolean is_admin) throws SQLException {
-        User user =  new User(name, password, basic_language, is_admin);
+    public void addUser(String name, String password, String basic_language, String role) throws SQLException {
+        User user =  new User(name, password, basic_language, role);
         userDao.addUser(user);
     }
 
@@ -58,7 +58,13 @@ public class UserService {
     }
 
     public boolean ifUserAdmin(String name, String password) {
-        return userDao.ifUserAdmin(name, password);
+        String role = userDao.ifUserAdmin(name, password);
+        if(role.equals("admin")) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
 

@@ -12,6 +12,6 @@ public interface UserDao {
     public List<User> getAllUsers() throws SQLException;
     public void createTable() throws SQLException;
     public boolean ifUserExist(String name, String password) throws SQLException;
-    public boolean ifUserAdmin(String name, String password);
+    public String ifUserAdmin(String name, String password);
     public User getUserByName(String name, String password);
 }

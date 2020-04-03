@@ -20,7 +20,7 @@ public class User {
     private String password;
 
     @Column(name = "is_admin")
-    private boolean is_admin;
+    private String role;
 
     @Column(name = "basic_language")
     private String basic_language;
@@ -53,11 +53,11 @@ public class User {
         this.time_created = time_created;
     }
 
-    public User(String name, String basic_language, boolean is_admin) {
+    public User(String name, String basic_language, String role) {
 //        this.id = id;
         this.name = name;
         this.basic_language = basic_language;
-        this.is_admin = is_admin;
+        this.role = role;
     }
 
 
@@ -71,10 +71,10 @@ public class User {
 
     }
 
-    public User(String name, String password, String basic_language, boolean is_admin) {
+    public User(String name, String password, String basic_language, String role) {
         this.name = name;
         this.password = password;
         this.basic_language = basic_language;
-        this.is_admin = is_admin;
+        this.role = role;
     }
 }

@@ -87,20 +87,16 @@ public class UserHibernateDao implements UserDao {
     }
 
 
-    public boolean ifUserAdmin(String name, String password) {
-        String hql = "FROM User where name = :name AND password = :password AND is_admin = :is_admin";
+    public String ifUserAdmin(String name, String password) {
+        String hql = "FROM User where name = :name AND password = :password";
         Session session = sessionFactory.openSession();
         Query q = session.createQuery(hql);
         q.setParameter("name", name);
         q.setParameter("password", password);
-        q.setParameter("is_admin", true);
+//        q.setParameter("role", "admin");
         List list = q.list();
-        if(list.size() > 0) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        User user = (User)list.get(0);
+        return user.getRole();
     }
 
     public User getUserByName(String name, String password) {
