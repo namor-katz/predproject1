@@ -93,7 +93,6 @@ public class UserHibernateDao implements UserDao {
         Query q = session.createQuery(hql);
         q.setParameter("name", name);
         q.setParameter("password", password);
-//        q.setParameter("role", "admin");
         List list = q.list();
         User user = (User)list.get(0);
         return user.getRole();

@@ -25,8 +25,13 @@ public class UserDaoFactory {
         }
     }
 
-    public static UserDao getUserDAO() throws FileNotFoundException {
-        UserDaoFactory userDaoFactory = new UserDaoFactory();
+    public static UserDao getUserDAO() {
+        UserDaoFactory userDaoFactory = null;
+        try {
+            userDaoFactory = new UserDaoFactory();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         String typeDao = userDaoFactory.parseConfig();
         if (typeDao.equalsIgnoreCase("jdbc")) {
             return new UserJdbcDao();

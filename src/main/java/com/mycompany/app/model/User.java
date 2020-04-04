@@ -19,7 +19,7 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "is_admin")
+    @Column(name = "role")
     private String role;
 
     @Column(name = "basic_language")
@@ -54,7 +54,6 @@ public class User {
     }
 
     public User(String name, String basic_language, String role) {
-//        this.id = id;
         this.name = name;
         this.basic_language = basic_language;
         this.role = role;

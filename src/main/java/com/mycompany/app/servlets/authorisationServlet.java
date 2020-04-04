@@ -19,7 +19,6 @@ public class authorisationServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        String path = "/my_app/";
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("index.jsp");
         requestDispatcher.forward(req, resp);
     }
@@ -44,7 +43,6 @@ public class authorisationServlet extends HttpServlet {
 
         }
         else if (isUserExist) {
-//            fromReturn = "/my_app_war/user"; //getuser by name
             session.setAttribute("is_admin", false);
             req.setAttribute("name", name);  //single simple user jsp
             req.setAttribute("password", password);

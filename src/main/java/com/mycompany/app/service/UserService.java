@@ -3,6 +3,7 @@ package com.mycompany.app.service;
 import com.mycompany.app.dao.UserDao;
 import com.mycompany.app.dao.UserDaoFactory;
 import com.mycompany.app.model.User;
+import lombok.SneakyThrows;
 
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
@@ -14,11 +15,11 @@ public class UserService {
 
     private UserDao userDao;
 
-    public UserService() throws FileNotFoundException {
+    public UserService() {
         userDao = UserDaoFactory.getUserDAO();
     }
 
-    public static UserService getInstance() throws FileNotFoundException {
+    public static UserService getInstance()  {
         if (userService == null) {
             userService = new UserService();
         }
