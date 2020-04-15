@@ -2,8 +2,6 @@ package com.mycompany.app.dao;
 
 import com.mycompany.app.model.User;
 import com.mycompany.app.utils.DBHelper;
-import lombok.SneakyThrows;
-
 import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
@@ -23,7 +21,7 @@ public class UserJdbcDao implements UserDao {
         preparedStatement.setString(2, user.getPassword());
         preparedStatement.setString(3, user.getRole());
         preparedStatement.setString(4, user.getBasic_language());
-        int RowsAffected = preparedStatement.executeUpdate();
+        preparedStatement.executeUpdate();
     }
 
     public int deleteUserById(long id) throws SQLException {
@@ -34,6 +32,7 @@ public class UserJdbcDao implements UserDao {
         return row;
     }
 
+
     public void editUser(long id, String name, String basic_language) throws SQLException {
         String query = "UPDATE user SET  name = ?, basic_language = ? WHERE id = ?";
         PreparedStatement prs = connection.prepareStatement(query);
@@ -42,6 +41,7 @@ public class UserJdbcDao implements UserDao {
         prs.setLong(3, id);
         int row = prs.executeUpdate();
     }
+
 
     public void createTable() throws SQLException {
         String sqlFromCreateTable = "CREATE table if not exists user (id bigint auto_increment, name varchar(256), " +
@@ -52,6 +52,7 @@ public class UserJdbcDao implements UserDao {
         stmt.execute(sqlFromCreateTable);
         stmt.close();
     }
+
 
     public User getUserById(long id) throws SQLException {
         String sql = "SELECT * FROM user WHERE id = ?";
@@ -64,6 +65,7 @@ public class UserJdbcDao implements UserDao {
         User user = new User(name, basic_language);
         return user;
     }
+
 
     public List<User> getAllUsers() throws SQLException {
         List<User> listAllUsers = new LinkedList<>();
@@ -82,8 +84,8 @@ public class UserJdbcDao implements UserDao {
         return listAllUsers;
     }
 
-    @SneakyThrows
-    public boolean ifUserExist(String name, String password)  {
+
+    public boolean ifUserExist(String name, String password) throws SQLException {
         String sql = "SELECT * FROM user WHERE name = ? and password = ?";
         PreparedStatement prs = connection.prepareStatement(sql);
         prs.setString(1, name);
@@ -92,8 +94,8 @@ public class UserJdbcDao implements UserDao {
         return rs.next();
     }
 
-    @SneakyThrows
-    public String ifUserAdmin(String name, String password) {
+
+    public String ifUserAdmin(String name, String password) throws SQLException {
         String sql = "SELECT role FROM user WHERE name = ? and password = ?";
         PreparedStatement prs = connection.prepareStatement(sql);
         prs.setString(1, name);
@@ -104,8 +106,8 @@ public class UserJdbcDao implements UserDao {
         return role;
     }
 
-    @SneakyThrows
-    public User getUserByName(String name, String password) {
+
+    public User getUserByName(String name, String password) throws SQLException {
         String sql = "SELECT * from user WHERE name = ? and password = ?";
         PreparedStatement prs = connection.prepareStatement(sql);
         prs.setString(1, name);
@@ -117,5 +119,4 @@ public class UserJdbcDao implements UserDao {
         User user = new User(id, name, basic_language);
         return user;
     }
-
 }

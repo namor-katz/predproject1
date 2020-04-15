@@ -1,6 +1,5 @@
-package com.mycompany.app.servlets;
+package com.mycompany.app.filters;
 
-import lombok.SneakyThrows;
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -18,7 +17,6 @@ public class mainFilter implements javax.servlet.Filter {
 
     }
 
-    @SneakyThrows
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;

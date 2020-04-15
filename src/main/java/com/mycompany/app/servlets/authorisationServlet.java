@@ -2,8 +2,6 @@ package com.mycompany.app.servlets;
 
 import com.mycompany.app.model.User;
 import com.mycompany.app.service.UserService;
-import lombok.SneakyThrows;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet(urlPatterns = "", name="authorisationServlet")
 public class authorisationServlet extends HttpServlet {
@@ -23,18 +21,25 @@ public class authorisationServlet extends HttpServlet {
         requestDispatcher.forward(req, resp);
     }
 
-    @SneakyThrows
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String fromReturn = null;
-        boolean isUserExist;
-        boolean isUserAdmin;
+        boolean isUserExist = false;
+        boolean isUserAdmin = false;
 
         UserService userService = new UserService();
         String name = req.getParameter("name");
         String password = req.getParameter("password");
-        isUserExist = userService.ifUserExist(name, password);
-        isUserAdmin = userService.ifUserAdmin(name, password);
+        try {
+            isUserExist = userService.ifUserExist(name, password);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            isUserAdmin = userService.ifUserAdmin(name, password);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         HttpSession session = req.getSession();
 
         if(isUserExist & isUserAdmin) {
@@ -47,7 +52,12 @@ public class authorisationServlet extends HttpServlet {
             req.setAttribute("name", name);  //single simple user jsp
             req.setAttribute("password", password);
 
-            User user = userService.getUserByName(name, password);
+            User user = null;
+            try {
+                user = userService.getUserByName(name, password);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
             req.setAttribute("user", user);
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("detail.jsp");
             requestDispatcher.forward(req, resp);

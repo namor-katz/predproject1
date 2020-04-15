@@ -3,7 +3,6 @@ package com.mycompany.app.service;
 import com.mycompany.app.dao.UserDao;
 import com.mycompany.app.dao.UserDaoFactory;
 import com.mycompany.app.model.User;
-import lombok.SneakyThrows;
 
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
@@ -58,7 +57,7 @@ public class UserService {
         return userDao.ifUserExist(name, password);
     }
 
-    public boolean ifUserAdmin(String name, String password) {
+    public boolean ifUserAdmin(String name, String password) throws SQLException {
         String role = userDao.ifUserAdmin(name, password);
         if(role.equals("admin")) {
             return true;
