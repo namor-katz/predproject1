@@ -27,7 +27,6 @@ public class existFilter implements javax.servlet.Filter {
         String fromReturn = null;
         boolean isUserExist = false;
         boolean isUserAdmin = false;
-//        String is_exist = null;
 
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
