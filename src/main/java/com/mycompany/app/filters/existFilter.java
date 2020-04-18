@@ -15,9 +15,11 @@ import javax.servlet.http.*;
 )
 public class existFilter implements javax.servlet.Filter {
 
+    private FilterConfig filterConfig;
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-
+        filterConfig = filterConfig;
     }
 
     @Override
@@ -48,24 +50,23 @@ public class existFilter implements javax.servlet.Filter {
         }
 
         if(isUserExist & isUserAdmin) {
-//            System.out.println("перенаправление на проверку роли");
-            fromReturn = "/my_app_war/admin";   //вечное перенапралвение без догет, с догетом ошибка 500
+            fromReturn = "/admin";
         }
         else if (isUserExist) {
-            fromReturn = "/my_app_war/user";
-            //тут без инфы о юзере, где то потерял получение или вставку
+            fromReturn = "/user";
         }
         else {
-            fromReturn = "/my_app_war/notfound";
-            //this user not found!  а тут всё заебца. единственная страница которая работает полностью как ожидается.
+            fromReturn = "/notfound";
         }
 
-        res.sendRedirect(fromReturn);
+//        res.sendRedirect(fromReturn);
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher(fromReturn);
+        requestDispatcher.forward(req, res);
 //        chain.doFilter(req, res);
     }
 
     @Override
     public void destroy() {
-
+        filterConfig = null;
     }
 }
