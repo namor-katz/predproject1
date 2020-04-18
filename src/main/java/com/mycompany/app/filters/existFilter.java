@@ -25,7 +25,7 @@ public class existFilter implements javax.servlet.Filter {
         String fromReturn = null;
         boolean isUserExist = false;
         boolean isUserAdmin = false;
-        String is_exist = null;
+//        String is_exist = null;
 
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
@@ -49,18 +49,19 @@ public class existFilter implements javax.servlet.Filter {
 
         if(isUserExist & isUserAdmin) {
 //            System.out.println("перенаправление на проверку роли");
-            fromReturn = "/my_app_war/admin";
+            fromReturn = "/my_app_war/admin";   //вечное перенапралвение без догет, с догетом ошибка 500
         }
         else if (isUserExist) {
             fromReturn = "/my_app_war/user";
+            //тут без инфы о юзере, где то потерял получение или вставку
         }
         else {
             fromReturn = "/my_app_war/notfound";
-            //this user not found!
+            //this user not found!  а тут всё заебца. единственная страница которая работает полностью как ожидается.
         }
 
         res.sendRedirect(fromReturn);
-        chain.doFilter(req, res);
+//        chain.doFilter(req, res);
     }
 
     @Override

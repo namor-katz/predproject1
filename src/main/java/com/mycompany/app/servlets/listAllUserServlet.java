@@ -24,8 +24,8 @@ public class listAllUserServlet extends HttpServlet{
             e.printStackTrace();
         }
         req.setAttribute("userNames", list);
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("list.jsp");
-            requestDispatcher.forward(req, resp);
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("list.jsp");
+        requestDispatcher.forward(req, resp);
     }
 
 
