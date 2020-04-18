@@ -1,16 +1,19 @@
 package com.mycompany.app.filters;
 
-import java.io.*;
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
-import javax.servlet.http.*;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.sql.rowset.serial.SerialException;
+import java.io.IOException;
 
 @WebFilter(
-        urlPatterns = "/admin/*",
-        filterName = "mainFilter",
-        description = "This is test webFilter"
+        urlPatterns = "/fuck",
+        filterName = "isAdminFilter",
+        description = "check - is admin?"
 )
-public class mainFilter implements javax.servlet.Filter {
+public class isAdminFilter implements javax.servlet.Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -24,7 +27,7 @@ public class mainFilter implements javax.servlet.Filter {
 
         HttpSession session = req.getSession();
 
-        String is_admin = String.valueOf((session.getAttribute("is_admin")));
+        String is_admin = String.valueOf(session.getAttribute("is_admin"));
         boolean next_step = Boolean.valueOf(is_admin);
         if(next_step == false) {
             res.sendRedirect("404.jsp");
@@ -33,10 +36,14 @@ public class mainFilter implements javax.servlet.Filter {
             RequestDispatcher dispatcher = req.getRequestDispatcher("/admin");
             dispatcher.forward(req, res);
         }
+
+//        RequestDispatcher requestDispatcher = req.getRequestDispatcher("404.jsp");
+
     }
 
     @Override
     public void destroy() {
 
     }
+
 }

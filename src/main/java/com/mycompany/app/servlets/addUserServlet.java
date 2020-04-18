@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet(urlPatterns = "/add", name = "UserServlet")
-public class UserServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/add", name = "addUserServlet")
+public class addUserServlet extends HttpServlet {
 
 
     @Override
@@ -38,7 +38,7 @@ public class UserServlet extends HttpServlet {
         try {
             userService.addUser(name, password, basic_language, role);
         } catch (SQLException e) {
-            System.out.println("This is SQLExceptions of UserServlet.doPost");
+            System.out.println("This is SQLExceptions of addUserServlet.doPost");
         }
 
         resp.sendRedirect(path);
