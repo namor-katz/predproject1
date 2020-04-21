@@ -9,7 +9,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.*;
 
 @WebFilter(
-        urlPatterns = {"/admin/*"},
+        urlPatterns = {"/admin"},
         filterName = "existFilter",
         description = "This is test webFilter"
 )
