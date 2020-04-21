@@ -14,4 +14,5 @@ public interface UserDao {
     public boolean ifUserExist(String name, String password) throws SQLException;
     public String ifUserAdmin(String name, String password) throws SQLException;
     public User getUserByName(String name, String password) throws SQLException;
+    public String getRoleByName(String name, String password) throws SQLException;
 }

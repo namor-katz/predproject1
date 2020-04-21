@@ -4,7 +4,6 @@ import com.mycompany.app.dao.UserDao;
 import com.mycompany.app.dao.UserDaoFactory;
 import com.mycompany.app.model.User;
 
-import java.io.FileNotFoundException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -67,9 +66,12 @@ public class UserService {
         }
     }
 
-
     public User getUserByName(String name, String password) throws SQLException {
         String separate = "; ";
         return userDao.getUserByName(name, password);
+    }
+
+    public String getRoleByName(String name, String password) throws SQLException {
+        return userDao.getRoleByName(name, password);
     }
 }

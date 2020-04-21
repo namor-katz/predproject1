@@ -31,7 +31,6 @@ public class listAllUserServlet extends HttpServlet{
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        System.out.println("бляяяяяядь. как ты сюда попал?");
         String name = req.getParameter("name");
         System.out.println(name);
     }

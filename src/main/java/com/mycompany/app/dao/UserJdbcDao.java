@@ -119,4 +119,16 @@ public class UserJdbcDao implements UserDao {
         User user = new User(id, name, basic_language);
         return user;
     }
+
+//    @Override
+    public String getRoleByName(String name, String password) throws SQLException {
+        String sql = "SELECT role FROM user WHERE name = ? and password = ?";
+        PreparedStatement prs = connection.prepareStatement(sql);
+        prs.setString(1, name);
+        prs.setString(2, password);
+        ResultSet rs = prs.executeQuery();
+        rs.next();
+        String role = rs.getString("role");
+        return role;
+    }
 }

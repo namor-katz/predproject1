@@ -4,8 +4,8 @@ import com.mycompany.app.utils.DBHelper;
 import org.hibernate.*;
 import com.mycompany.app.model.User;
 
+import java.sql.SQLException;
 import java.util.List;
-import java.util.Queue;
 
 public class UserHibernateDao implements UserDao {
 
@@ -101,5 +101,17 @@ public class UserHibernateDao implements UserDao {
     public User getUserByName(String name, String password) {
         Session session = sessionFactory.openSession();
         return (User) session.get(User.class, name);
+    }
+
+    @Override
+    public String getRoleByName(String name, String password) throws SQLException {
+        String hql = "FROM User where name = :name AND password = :password";
+        Session session = sessionFactory.openSession();
+        Query q = session.createQuery(hql);
+        q.setParameter("name", name);
+        q.setParameter("password", password);
+        List list = q.list();
+        User user = (User)list.get(0);
+        return user.getRole();
     }
 }

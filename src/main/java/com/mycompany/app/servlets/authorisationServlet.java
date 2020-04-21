@@ -24,60 +24,20 @@ public class authorisationServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        boolean isUserAdmin = false;
-
-//        UserService userService = new UserService();
+        String role = null;
+        UserService userService = UserService.getInstance();
         String name = req.getParameter("name");
         String password = req.getParameter("password");
-//        try {
-//            isUserExist = userService.ifUserExist(name, password);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-/*
         try {
-            isUserAdmin = userService.ifUserAdmin(name, password);
+            role = userService.getRoleByName(name, password);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        HttpSession session = req.getSession();
 
-        if(isUserExist & isUserAdmin) {
-            session.setAttribute("is_admin", true);
-            fromReturn = "/my_app_war/admin";
-
-        }
-
-        else if (isUserExist) {
-            session.setAttribute("is_admin", false);
-            req.setAttribute("name", name);  //single simple user jsp
-            req.setAttribute("password", password);
-
-            User user = null;
-            try {
-                user = userService.getUserByName(name, password);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            req.setAttribute("user", user);
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("detail.jsp");
-            requestDispatcher.forward(req, resp);
-        }
-        else {
-            session.setAttribute("is_admin", false);
-            fromReturn = "/my_app_war/notfound"; //return 404
-        }
-*/
-
-        req.setAttribute("name", name);
-        req.setAttribute("password", password);
-//        ServletContext servletContext = getServletContext();
         HttpSession session = req.getSession();
         session.setAttribute("name", name);
         session.setAttribute("password", password);
-//        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/admin");
-//        requestDispatcher.forward(req, resp);
-//        resp.sendRedirect("/admin"); //редирект работает, а диспетчер - нет.
-        resp.sendRedirect("/my_app_war/admin"); //редирект работает, а диспетчер - нет.
+        session.setAttribute("role", role);
+        resp.sendRedirect("/my_app_war/admin");
     }
 }
